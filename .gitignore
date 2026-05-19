@@ -3,6 +3,8 @@
 *.iml
 *.iws
 *.ipr
+.idea/httpRequests/
+.idea/dataSources/
 
 # Build output
 out/
@@ -15,3 +17,4 @@ Thumbs.db.claude
 
 # CV files (private)
 docs/cv/
+.claude
