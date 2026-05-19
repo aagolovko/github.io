@@ -1,1 +1,784 @@
-Content is coming soon...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andriy Golovko – Software Architect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8f8f8;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        nav a {
+            display: block;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            color: #111;
+        }
+
+        nav a.active {
+            color: #111;
+            border-bottom-color: #c8a46e;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            min-height: calc(100vh - 60px);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* About Page */
+        .profile-card {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            margin: 0 auto 24px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-image.missing {
+            display: none;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .bio {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .skills {
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .skills-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .languages {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .lang-item {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .lang-label {
+            font-weight: 600;
+            color: #222;
+        }
+
+        /* Section Titles */
+        h2 {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 24px;
+            color: #111;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #c8a46e;
+            text-align: left;
+        }
+
+        /* Wanted Page */
+        .wanted-item {
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .wanted-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .wanted-value {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Projects Page */
+        .project-group {
+            margin-bottom: 50px;
+        }
+
+        .group-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .project {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            border-left: 3px solid #c8a46e;
+        }
+
+        .project-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .project-title a {
+            color: #111;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .project-title a:hover {
+            color: #c8a46e;
+        }
+
+        .project-link {
+            font-size: 13px;
+            color: #c8a46e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .project-meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            font-size: 12px;
+            color: #c8a46e;
+            background: rgba(200, 164, 110, 0.08);
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        /* Interests Page */
+        .interest-section {
+            margin-bottom: 36px;
+            text-align: left;
+        }
+
+        .interest-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .interest-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* CV Page */
+        .cv-download {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #111;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #333;
+        }
+
+        .cv-timeline {
+            text-align: left;
+        }
+
+        .cv-item {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cv-item:last-child {
+            border-bottom: none;
+        }
+
+        .cv-item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .cv-item-meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .cv-item-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* FAQ Page */
+        .faq-list {
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .faq-a {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .faq-a a {
+            color: #c8a46e;
+            text-decoration: none;
+        }
+
+        .faq-a a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                min-width: auto;
+            }
+
+            nav a {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                text-align: left;
+                padding: 12px 16px;
+            }
+
+            nav a.active {
+                border-left-color: #c8a46e;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#" class="nav-link active" onclick="showPage('about'); return false;">About</a></li>
+            <li><a href="#" class="nav-link" onclick="showPage('wanted'); return false;">Wanted</a></li>
+            <li><a href="#" class="nav-link" onclick="showPage('projects'); return false;">Projects</a></li>
+            <li><a href="#" class="nav-link" onclick="showPage('interests'); return false;">Interests</a></li>
+            <li><a href="#" class="nav-link" onclick="showPage('cv'); return false;">CV</a></li>
+            <li><a href="#" class="nav-link" onclick="showPage('faq'); return false;">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Page -->
+        <div id="about" class="page active">
+            <div class="profile-card">
+                <img src="docs/img.png" alt="Andriy Golovko" class="profile-image" onerror="this.classList.add('missing')">
+                <h1>Andriy Golovko</h1>
+                <div class="title">Software Architect | Senior Software Developer</div>
+            </div>
+
+            <div class="bio">
+                <p>I design and build scalable systems with Java, Kotlin, and Spring Boot. Over 20 years building cloud-native backends, microservices, and distributed systems at companies like BMW, RTL+, and Audi.</p>
+            </div>
+
+            <div class="skills">
+                <span class="skills-label">Core Skills</span>
+                <div class="skill-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Angular</span>
+                    <span class="tag">Full-Stack Development</span>
+                    <span class="tag">Microservices</span>
+                    <span class="tag">System Design</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">Cloud</span>
+                    <span class="tag">GraphQL</span>
+                    <span class="tag">DDD</span>
+                    <span class="tag">AI/LLM</span>
+                </div>
+            </div>
+
+            <div class="languages">
+                <span class="skills-label">Languages</span>
+                <div class="lang-item"><span class="lang-label">Native:</span> Ukrainian</div>
+                <div class="lang-item"><span class="lang-label">Fluent:</span> German, English, Russian</div>
+            </div>
+
+            <div>
+                <span class="skills-label">Location</span>
+                <div class="lang-item">Munich, Germany</div>
+            </div>
+        </div>
+
+        <!-- Wanted Page -->
+        <div id="wanted" class="page">
+            <h2>What I'm Looking For</h2>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Role</span>
+                <div class="wanted-value">Software Architect or Fullstack Software Developer</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Work Model</span>
+                <div class="wanted-value">Hybrid in Munich: 3 days home, 2 days office</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Location</span>
+                <div class="wanted-value">Munich, Germany. Relocation not possible.</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Industries</span>
+                <div class="wanted-value">Banking, Finance, Insurance, Logistics, Manufacturing, Energy, Defence. These sectors have inherent complexity and are undergoing transformation toward AI-native systems.</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Company Vision</span>
+                <div class="wanted-value">Ideally, a company committed to becoming AI-native. Organizations with resources for serious technical transformation and modernization.</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Tech Stack</span>
+                <div class="wanted-value">Java/Kotlin, Spring ecosystem, Cloud-native architecture, AI/LLM integrations, event-driven systems</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">What Matters</span>
+                <div class="wanted-value">Technical ownership, long-term vision, direct problem-solving, continuous learning, minimal process overhead</div>
+            </div>
+
+            <div class="wanted-item">
+                <span class="wanted-label">Availability</span>
+                <div class="wanted-value">Flexible; 2-4 weeks notice depending on engagement</div>
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div id="projects" class="page">
+            <h2>Client Work</h2>
+
+            <div class="project-group">
+                <div class="project">
+                    <div class="project-title">PACE – Process Automation Engine</div>
+                    <div class="project-meta">jambit | 2024 – present</div>
+                    <div class="project-desc">Process automation platform with BPMN modeling, semantic search using Spring AI, and system integrations via Delegates.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Camunda</span>
+                        <span class="tech-tag">Spring AI</span>
+                        <span class="tech-tag">Vaadin</span>
+                        <span class="tech-tag">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">RTL+ Multi-Purpose Application</div>
+                    <div class="project-meta">jambit | 2022 – 2024</div>
+                    <div class="project-desc">All-in-one platform for Live-TV, video-on-demand, music, and podcasts. Integrated backend serving millions of requests daily.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">NodeJS</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">Audi Business Innovations – Mobility Service</div>
+                    <div class="project-meta">jambit | 2016 – 2018</div>
+                    <div class="project-desc">Microservices for in-car technology. Enabled features like one-time PIN trunk access for package delivery.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Cloud Foundry</span>
+                        <span class="tech-tag">Prometheus</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">BMW EV Range Map</div>
+                    <div class="project-meta">jambit | 2014</div>
+                    <div class="project-desc">Range prediction engine for electric vehicles using complex cost models and HERE map data.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">JNI</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 50px;">Personal & Open Source</h2>
+
+            <div class="project-group">
+                <div class="project">
+                    <div class="project-title">Van Conversion – Smart Living</div>
+                    <div class="project-meta">Ongoing</div>
+                    <div class="project-desc">Full camper build: electrical systems, insulation, solar power, water, smart monitoring. A live experiment in minimalism and self-sufficiency.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">12V/230V Systems</span>
+                        <span class="tech-tag">Solar</span>
+                        <span class="tech-tag">IoT Sensors</span>
+                        <span class="tech-tag">Raspberry Pi</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title"><a href="https://github.com/aagolovko/web-crawler" target="_blank" class="project-link">Web Crawler & Data Scraping Tools</a></div>
+                    <div class="project-meta">Utilities</div>
+                    <div class="project-desc">Efficient crawlers for structured data extraction and indexing. Built with Python, async patterns, and responsible rate-limiting.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Async</span>
+                        <span class="tech-tag">Data Processing</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">Home Automation</div>
+                    <div class="project-meta">2020 – ongoing</div>
+                    <div class="project-desc">Self-hosted smart home: sensors, climate control, lighting, energy monitoring, automations.</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Raspberry Pi</span>
+                        <span class="tech-tag">MQTT</span>
+                        <span class="tech-tag">Home Assistant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interests Page -->
+        <div id="interests" class="page">
+            <h2>How I Learn</h2>
+
+            <div class="interest-section">
+                <span class="interest-label">Self-directed Learning</span>
+                <div class="interest-content">Udemy and YouTube courses on emerging technologies, architecture patterns, and adjacent fields. I learn best by building and experimenting.</div>
+            </div>
+
+            <div class="interest-section">
+                <span class="interest-label">Reading</span>
+                <div class="interest-content">Yuval Noah Harari (Sapiens, Homo Deus), history, philosophy, and futurism. Books that explore how societies evolve and where we're headed.</div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Travel</h2>
+
+            <div class="interest-section">
+                <span class="interest-label">Places That Shaped Me</span>
+                <div class="interest-content">Norway, Sardinia, Corsica, Italy, Ukraine, Turkey. Each left a mark on how I see the world.</div>
+            </div>
+
+            <div class="interest-section">
+                <span class="interest-label">Earlier Adventures</span>
+                <div class="interest-content">India and Philippines. Long-form travel, deep culture immersion, perspective shift.</div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Other</h2>
+
+            <div class="interest-section">
+                <span class="interest-label">DIY & Making</span>
+                <div class="interest-content">Building things with my hands. Van conversion, home automation, electronics, woodworking. The process matters as much as the result.</div>
+            </div>
+
+            <div class="interest-section">
+                <span class="interest-label">Films & Series</span>
+                <div class="interest-content">Quality storytelling, cinematography, documentaries. I appreciate craft and ambition in filmmaking.</div>
+            </div>
+        </div>
+
+        <!-- CV Page -->
+        <div id="cv" class="page">
+            <div class="cv-download">
+                <a href="mailto:aagolovko@googlemail.com?subject=CV Request&body=Please send me your CV" class="download-btn">Request CV</a>
+            </div>
+
+            <h2 style="margin-top: 40px;">Focus Areas</h2>
+
+            <div class="cv-timeline">
+                <div class="cv-item" style="border-bottom: none; padding-bottom: 0;">
+                    <div class="cv-item-content">Microservices & Domain-Driven Design · Cloud-Native Architecture · Kubernetes & Docker · Spring Ecosystem · GraphQL & REST APIs · Event-Driven Systems · Monitoring & Observability · IoT & SCADA</div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Languages</h2>
+
+            <div class="cv-timeline">
+                <div class="cv-item" style="border-bottom: none; padding-bottom: 0;">
+                    <div class="cv-item-content"><strong>Native:</strong> Ukrainian · <strong>Fluent:</strong> German, English, Russian</div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Education</h2>
+
+            <div class="cv-timeline">
+                <div class="cv-item" style="border-bottom: none; padding-bottom: 0;">
+                    <div class="cv-item-content">Bachelor in Psychology · Dipl.-Inf. Univ. from Technische Universität München (2000–2006, Grade 1.9)</div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Kundenprojekte</h2>
+
+            <div class="cv-timeline">
+                <div class="cv-item">
+                    <div class="cv-item-title">PACE – Process Automation Platform</div>
+                    <div class="cv-item-meta">jambit | 2024–present</div>
+                    <div class="cv-item-content">Camunda BPMN, Spring AI, system integrations</div>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-title">RTL+ Multi-Purpose Application</div>
+                    <div class="cv-item-meta">jambit | 2022–2024</div>
+                    <div class="cv-item-content">Live-TV, video-on-demand, music platform. Kotlin, GraphQL, Kafka, Kubernetes</div>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-title">Audi Mobility Service Infrastructure</div>
+                    <div class="cv-item-meta">jambit | 2016–2018</div>
+                    <div class="cv-item-content">In-car microservices. Spring Boot, Cloud Foundry, Kubernetes</div>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-title">BMW EV Range Map</div>
+                    <div class="cv-item-meta">jambit | 2014</div>
+                    <div class="cv-item-content">Range prediction engine. Java, C++, JNI</div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Skills & Lifestyle</h2>
+
+            <div class="cv-timeline">
+                <div class="cv-item" style="border-bottom: none; padding-bottom: 0;">
+                    <div class="cv-item-content"><strong>Curious:</strong> Continuous learning in new technologies and domains · <strong>Minimalist:</strong> Lean, maintainable system architectures (KISS principle) · <strong>Builder:</strong> DIY projects, home automation, van conversion · <strong>Traveler:</strong> Nature explorer with family</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Page -->
+        <div id="faq" class="page">
+            <h2>Frequently Asked</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">When are you available?</div>
+                    <div class="faq-a">Flexible. Typical notice period is 2–4 weeks depending on project engagement and existing contracts.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">Work location and model?</div>
+                    <div class="faq-a">Munich-based hybrid: 3 days home, 2 days in office. This is my preferred arrangement.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">Will you relocate?</div>
+                    <div class="faq-a">No. Munich is where I'm based. Relocation is not an option.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">What's your ideal next role?</div>
+                    <div class="faq-a">Architecture + hands-on coding. I want to own technical decisions, solve hard problems, and drive transformation. Short-term consulting doesn't appeal; long-term product development with AI-native vision does.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">How do you prefer to work?</div>
+                    <div class="faq-a">Agile, but lightweight. Small teams (5–10 people), direct collaboration, minimal meetings. I value autonomy and trust.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">Contract or employment?</div>
+                    <div class="faq-a">Prefer long-term employment for alignment and depth. Contract work considered for the right mission and team.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q">How do I reach you?</div>
+                    <div class="faq-a">Email: <a href="mailto:aagolovko@googlemail.com">aagolovko@googlemail.com</a> | Phone: +49 179 219 00 94</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
