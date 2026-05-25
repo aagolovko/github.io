@@ -1,0 +1,467 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f8f8f8;
+    color: #222;
+    line-height: 1.6;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+nav li {
+    flex: 1;
+    min-width: 100px;
+}
+
+nav a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+p a {
+    text-decoration: none;
+    color: #a73469;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+nav a:hover {
+    color: #111;
+}
+
+nav a.active {
+    color: #111;
+    border-bottom-color: #c8a46e;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    min-height: calc(100vh - 60px);
+}
+
+/* About Page */
+.profile-card {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    margin: 0 auto 24px;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-image.missing {
+    display: none;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.title {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 32px;
+    font-weight: 500;
+}
+
+.bio {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.skills {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.skills-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #555;
+}
+
+.languages {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.lang-item {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.lang-label {
+    font-weight: 600;
+    color: #222;
+}
+
+.ai-block {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    border-left: 3px solid #c8a46e;
+}
+
+.ai-block h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #111;
+}
+
+.ai-block p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.ai-block a {
+    display: inline-block;
+    color: #c8a46e;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.bio-note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+.contact-link {
+    color: #c8a46e;
+    text-decoration: none;
+}
+
+/* Section Titles */
+h2 {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 24px;
+    color: #111;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #c8a46e;
+    text-align: left;
+}
+
+h2.spaced {
+    margin-top: 40px;
+}
+
+/* Wanted Page */
+.wanted-item {
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.wanted-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.wanted-value {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+}
+
+/* Projects Page */
+.project-group {
+    margin-bottom: 50px;
+}
+
+.group-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.project {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    border-left: 3px solid #c8a46e;
+}
+
+.project-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.project-title a {
+    color: #111;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.project-title a:hover {
+    color: #c8a46e;
+}
+
+.project-link {
+    font-size: 13px;
+    color: #c8a46e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.project-meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.project-desc {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tech-tag {
+    font-size: 12px;
+    color: #c8a46e;
+    background: rgba(200, 164, 110, 0.08);
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+/* Interests Page */
+.interest-section {
+    margin-bottom: 36px;
+    text-align: left;
+}
+
+.interest-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.interest-content {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* CV Page */
+.cv-download {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #111;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.download-btn:hover {
+    background: #333;
+}
+
+.cv-timeline {
+    text-align: left;
+}
+
+.cv-item {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cv-item.flat {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.cv-item:last-child {
+    border-bottom: none;
+}
+
+.cv-item-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.cv-item-meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.cv-item-content {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* FAQ Page */
+.faq-list {
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.faq-a {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.faq-a a {
+    color: #c8a46e;
+    text-decoration: none;
+}
+
+.faq-a a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        min-width: auto;
+    }
+
+    nav a {
+        border-bottom: none;
+        border-left: 3px solid transparent;
+        text-align: left;
+        padding: 12px 16px;
+    }
+
+    nav a.active {
+        border-left-color: #c8a46e;
+    }
+
+    .container {
+        padding: 40px 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 14px;
+    }
+}
